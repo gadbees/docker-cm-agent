@@ -1,0 +1,36 @@
+{
+  "id": "cloudera-agent1",
+  "cmd": "/start.sh",
+  "instances": 1,
+  "cpus": 1,
+  "mem": 1024,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "pulsepointinc/cm-agent:latest",
+      "network": "HOST",
+      "forcePullImage": true
+    }
+  },
+  "env": {
+    "AGENT_UUID": "eaa935a8-78b2-4c53-b412-2205f4f59e34",
+    "LISTENING_HOSTNAME": "cloudera-agent1.marathon.mesos",
+    "SERVER_HOST": "cloudera-manager.marathon.mesos",
+    "SERVER_PORT": "7182"
+  },
+  "ports": [0, 0],
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 0.0,
+    "maximumOverCapacity": 0.0
+  },
+  "healthChecks": [
+    {
+      "portIndex": 0,
+      "protocol": "TCP",
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ]
+}
