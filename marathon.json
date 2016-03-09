@@ -14,7 +14,7 @@
   },
   "env": {
     "AGENT_UUID": "eaa935a8-78b2-4c53-b412-2205f4f59e34",
-    "LISTENING_HOSTNAME": "cloudera-agent1.marathon.mesos",
+    "REPORTED_HOSTNAME": "cloudera-agent1.marathon.mesos",
     "SERVER_HOST": "cloudera-manager.marathon.mesos",
     "SERVER_PORT": "7182"
   },

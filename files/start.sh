@@ -7,8 +7,8 @@
 ## Assign config values from env, or use defaults
 SERVER_HOST=${SERVER_HOST:-localhost}
 SERVER_PORT=${SERVER_PORT:-7182}
-LISTENING_HOSTNAME=${LISTENING_HOSTNAME:-${HOST}}
 LISTENING_PORT=${PORT0:-9000}
+REPORTED_HOSTNAME=${REPORTED_HOSTNAME:-${HOST}}
 SUPERVISORD_PORT=${PORT1:-19001}
 
 ## Write out config file
@@ -16,8 +16,8 @@ cat > /etc/cloudera-scm-agent/config.ini << EOF
 [General]
 server_host=${SERVER_HOST}
 server_port=${SERVER_PORT}
-listening_hostname=${LISTENING_HOSTNAME}
 listening_port=${LISTENING_PORT}
+reported_hostname=${REPORTED_HOSTNAME}
 supervisord_port=${SUPERVISORD_PORT}
 EOF
 
@@ -28,9 +28,10 @@ $(cat /etc/cloudera-scm-agent/config.ini)
 
 env:
 $(env)
-
-/usr/sbin/cmf-agent:
 EOF
 
 ## Finally, exec to cm-agent
-exec /usr/sbin/cmf-agent
+exec /usr/lib64/cmf/agent/build/env/bin/python /usr/lib64/cmf/agent/src/cmf/agent.py \
+  --package_dir /usr/lib64/cmf/service \
+  --agent_dir /var/run/cloudera-scm-agent \
+  --lib_dir /var/lib/cloudera-scm-agent
