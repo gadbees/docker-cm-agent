@@ -31,7 +31,7 @@ $(env)
 EOF
 
 ## Finally, exec to cm-agent
-exec /usr/lib64/cmf/agent/build/env/bin/python /usr/lib64/cmf/agent/src/cmf/agent.py \
+exec /usr/lib64/cmf/agent/build/env/bin/python /usr/lib64/cmf/agent/build/env/bin/cmf-agent \
   --package_dir /usr/lib64/cmf/service \
   --agent_dir /var/run/cloudera-scm-agent \
   --lib_dir /var/lib/cloudera-scm-agent
