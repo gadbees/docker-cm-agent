@@ -14,6 +14,7 @@ RUN \
 
 COPY files/start.sh /
 COPY files/parcel-parser.py /
+RUN chmod +x /parcel-parser.py
 
 RUN /parcel-parser.py
 
