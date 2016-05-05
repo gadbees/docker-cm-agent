@@ -61,4 +61,4 @@ perms_setup(parcel_location)
 
 os.system("ln -s {0} /opt/cloudera/parcels/CDH".format(parcel_location))
 
-os.system("rm -rf {0}".format(parcel_location))
+os.system("rm -f {0}-el6.parcel".format(parcel_location))
