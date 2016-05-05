@@ -13,5 +13,8 @@ RUN \
     "http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar"
 
 COPY files/start.sh /
+COPY files/parcel-parser.py /
+
+RUN /parcel-parser.py
 
 CMD ["/start.sh"]
