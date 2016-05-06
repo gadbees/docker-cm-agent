@@ -70,5 +70,7 @@ alt_setup(cdh_parcel_location)
 perms_setup(cdh_parcel_location)
 
 os.system("ln -s {0} /opt/cloudera/parcels/CDH".format(cdh_parcel_location))
+os.system("ln -s {0} /opt/cloudera/parcels/Anaconda".format(anaconda_parcel_location))
 
 os.system("rm -f {0}-{1}.parcel".format(cdh_parcel_location, centos_version))
+os.system("rm -f {0}-{1}.parcel".format(anaconda_parcel_location, centos_version))
