@@ -49,16 +49,26 @@ def perms_setup(location):
 
 	file.close()
 
-parcel_name = "CDH-5.7.0-1.cdh5.7.0.p0.45"
-parcel_location = "/opt/cloudera/parcels/{0}/".format(parcel_name)
+
+#### Configuration options START
+cdh_parcel_name = "CDH-5.7.0-1.cdh5.7.0.p0.45"
+cdh_parcel_repo_url = "https://archive.cloudera.com/cdh5/parcels/5.7.0/"
+cdh_parcel_location = "/opt/cloudera/parcels/{0}/".format(cdh_parcel_name)
+centos_version = "el6"
+anaconda_version = "2.5.0"
+anaconda_parcel_repo_url = "https://repo.continuum.io/pkgs/misc/parcels/archive/"
+anaconda_parcel_location = "/opt/cloudera/parcels/Anaconda-{0}-{1}.parcel".format(anaconda_version, centos_version)
+#### Configuration options END
 
 os.system("mkdir -p /opt/cloudera/parcels/")
-urlretrieve("https://archive.cloudera.com/cdh5/parcels/5.7.0/{0}-el6.parcel".format(parcel_name), "/opt/cloudera/parcels/{0}-el6.parcel".format(parcel_name))
-os.system("tar -xzf /opt/cloudera/parcels/{0}-el6.parcel -C /opt/cloudera/parcels/".format(parcel_name))
+urlretrieve("{0}{1}-{2}.parcel".format(cdh_parcel_repo_url, cdh_parcel_name, centos_version), "/opt/cloudera/parcels/{0}-{1}.parcel".format(cdh_parcel_name, centos_version))
+urlretrieve("{0}Anaconda-{1}-{2}.parcel".format(anaconda_parcel_repo_url, anaconda_version, centos_version), "/opt/cloudera/parcels/Anaconda-{0}-{1}.parcel".format(anaconda_version, centos_version))
+os.system("tar -xzf /opt/cloudera/parcels/{0}-{1}.parcel -C /opt/cloudera/parcels/".format(cdh_parcel_name, centos_version))
+os.system("tar -xzf /opt/cloudera/parcels/Anaconda-{0}-{1}.parcel -C /opt/cloudera/parcels/".format(anaconda_version, centos_version))
 
-alt_setup(parcel_location)
-perms_setup(parcel_location)
+alt_setup(cdh_parcel_location)
+perms_setup(cdh_parcel_location)
 
-os.system("ln -s {0} /opt/cloudera/parcels/CDH".format(parcel_location))
+os.system("ln -s {0} /opt/cloudera/parcels/CDH".format(cdh_parcel_location))
 
-os.system("rm -f {0}-el6.parcel".format(parcel_location))
+os.system("rm -f {0}-{1}.parcel".format(cdh_parcel_location, centos_version))
