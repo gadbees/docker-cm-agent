@@ -23,7 +23,7 @@ def alt_setup(location):
 				os.system("mkdir -p {0}".format(dest))
 
 
-		os.system("alternatives --install {0} {1} {2}{3} {4}".format(data[key]['destination'], key, location, data[key]['source'], data[key]['priority']))
+		os.system("alternatives --install {0} {1} {2}/{3} {4}".format(data[key]['destination'], key, location, data[key]['source'], data[key]['priority']))
 
 	file.close()
 
@@ -44,8 +44,8 @@ def perms_setup(location):
 		except KeyError:
 			os.system("groupadd {0}".format(data[key]['group']))
 		
-		os.system("chown {0}:{1} {2}{3}".format(data[key]['user'], data[key]['group'], location, key))
-		os.system("chmod {0} {1}{2}".format(data[key]['permissions'], location, key))	
+		os.system("chown {0}:{1} {2}/{3}".format(data[key]['user'], data[key]['group'], location, key))
+		os.system("chmod {0} {1}/{2}".format(data[key]['permissions'], location, key))	
 
 	file.close()
 
@@ -53,11 +53,11 @@ def perms_setup(location):
 #### Configuration options START
 cdh_parcel_name = "CDH-5.7.0-1.cdh5.7.0.p0.45"
 cdh_parcel_repo_url = "https://archive.cloudera.com/cdh5/parcels/5.7.0/"
-cdh_parcel_location = "/opt/cloudera/parcels/{0}/".format(cdh_parcel_name)
+cdh_parcel_location = "/opt/cloudera/parcels/{0}".format(cdh_parcel_name)
 centos_version = "el6"
 anaconda_version = "2.5.0"
 anaconda_parcel_repo_url = "https://repo.continuum.io/pkgs/misc/parcels/archive/"
-anaconda_parcel_location = "/opt/cloudera/parcels/Anaconda-{0}-{1}.parcel".format(anaconda_version, centos_version)
+anaconda_parcel_location = "/opt/cloudera/parcels/Anaconda-{0}".format(anaconda_version, centos_version)
 #### Configuration options END
 
 os.system("mkdir -p /opt/cloudera/parcels/")
@@ -69,8 +69,8 @@ os.system("tar -xzf /opt/cloudera/parcels/Anaconda-{0}-{1}.parcel -C /opt/cloude
 alt_setup(cdh_parcel_location)
 perms_setup(cdh_parcel_location)
 
-os.system("ln -s {0} /opt/cloudera/parcels/CDH".format(cdh_parcel_location))
-os.system("ln -s {0} /opt/cloudera/parcels/Anaconda".format(anaconda_parcel_location))
+os.system("ln -s {0}/ /opt/cloudera/parcels/CDH".format(cdh_parcel_location))
+os.system("ln -s {0}/ /opt/cloudera/parcels/Anaconda".format(anaconda_parcel_location))
 
 os.system("rm -f {0}-{1}.parcel".format(cdh_parcel_location, centos_version))
 os.system("rm -f {0}-{1}.parcel".format(anaconda_parcel_location, centos_version))
