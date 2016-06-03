@@ -5,7 +5,8 @@ COPY files/etc/yum.repos.d/cloudera-manager.repo /etc/yum.repos.d/
 RUN \
   rpm --rebuilddb && \
   yum install -y \
-    cloudera-manager-agent && \
+    cloudera-manager-agent \
+    ntp && \
   yum clean all
 
 RUN \
@@ -14,9 +15,11 @@ RUN \
     "http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"
 
 COPY files/start.sh /
-COPY files/parcel-parser.py /
-RUN chmod +x /parcel-parser.py
 
-RUN /parcel-parser.py
+COPY files/parcel-parser.py /
+RUN \
+  chmod +x /parcel-parser.py && \
+  /parcel-parser.py && \
+  rm -f /parcel-parser.py
 
 CMD ["/start.sh"]
