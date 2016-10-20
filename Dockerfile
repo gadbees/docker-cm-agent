@@ -14,7 +14,7 @@ RUN \
   curl -s -L -o /usr/share/java/mysql-connector-java.jar \
     "http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"
 
-COPY ./files/activate.py /
+COPY files/activate.py /
 
 RUN \
   mkdir -p -v /opt/cloudera/parcel-cache && \
@@ -25,6 +25,6 @@ RUN \
   /usr/lib64/cmf/agent/build/env/bin/python /activate.py && \
   rm -fr /opt/cloudera/parcel-cache/*
 
-COPY ./files/start.sh /
+COPY files/start.sh /
 
 CMD ["/start.sh"]
