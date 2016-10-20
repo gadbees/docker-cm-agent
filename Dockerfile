@@ -14,7 +14,7 @@ RUN \
   curl -s -L -o /usr/share/java/mysql-connector-java.jar \
     "http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"
 
-COPY ./files/activate.py /
+COPY files/activate.py /scripts/
 
 RUN \
   mkdir -p -v /opt/cloudera/parcel-cache && \
@@ -22,9 +22,9 @@ RUN \
     "http://archive.cloudera.com/cdh5/parcels/5.8.2/CDH-5.8.2-1.cdh5.8.2.p0.3-el6.parcel" && \
   curl -s -L -o /opt/cloudera/parcel-cache/Anaconda-2.5.0-el6.parcel \
     "https://repo.continuum.io/pkgs/misc/parcels/archive/Anaconda-2.5.0-el6.parcel" && \
-  /usr/lib64/cmf/agent/build/env/bin/python /activate.py && \
+  /usr/lib64/cmf/agent/build/env/bin/python /scripts/activate.py && \
   rm -fr /opt/cloudera/parcel-cache/*
 
-COPY ./files/start.sh /
+COPY files/start.sh /scripts/
 
-CMD ["/start.sh"]
+CMD ["/scripts/start.sh"]
