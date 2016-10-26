@@ -51,8 +51,8 @@ def perms_setup(location):
 
 
 #### Configuration options START
-cdh_parcel_name = "CDH-5.7.0-1.cdh5.7.0.p0.45"
-cdh_parcel_repo_url = "https://archive.cloudera.com/cdh5/parcels/5.7.0/"
+cdh_parcel_name = "CDH-5.8.2-1.cdh5.8.2.p0.3"
+cdh_parcel_repo_url = "https://archive.cloudera.com/cdh5/parcels/5.8.2/"
 cdh_parcel_location = "/opt/cloudera/parcels/{0}".format(cdh_parcel_name)
 centos_version = "el6"
 anaconda_version = "2.5.0"
