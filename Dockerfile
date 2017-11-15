@@ -18,8 +18,8 @@ COPY files/activate.py /scripts/
 
 RUN \
   mkdir -p -v /opt/cloudera/parcel-cache && \
-  curl -s -L -o /opt/cloudera/parcel-cache/CDH-5.13.0-1.cdh5.13.0.p0.29-el5.parcel \
-    "http://archive.cloudera.com/cdh5/parcels/5.13.0/CDH-5.13.0-1.cdh5.13.0.p0.29-el5.parcel/" && \
+  curl -s -L -o /opt/cloudera/parcel-cache/CDH-5.13.0-1.cdh5.13.0.p0.29-el6.parcel \
+    "http://archive.cloudera.com/cdh5/parcels/5.13.0/CDH-5.13.0-1.cdh5.13.0.p0.29-el6.parcel/" && \
   curl -s -L -o /opt/cloudera/parcel-cache/Anaconda-2.5.0-el6.parcel \
     "https://repo.continuum.io/pkgs/misc/parcels/archive/Anaconda-2.5.0-el6.parcel" && \
   /usr/lib64/cmf/agent/build/env/bin/python /scripts/activate.py && \
