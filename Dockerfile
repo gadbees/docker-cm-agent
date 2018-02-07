@@ -14,6 +14,12 @@ RUN \
   curl -s -L -o /usr/share/java/mysql-connector-java.jar \
     "http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"
 
+RUN \
+  mkdir -p -v /opt/alluxio && \
+  curl -s -o /opt/alluxio/alluxio-1.7.1-SNAPSHOT-client.jar \ 
+    "http://nexus.pulse.corp/nexus/service/local/repositories/thirdparty/content/org/alluxio/alluxio-parent/1.7.1/alluxio-parent-1.7.1-client.jar" && \
+  chmod 644 /opt/alluxio/alluxio-1.7.1-SNAPSHOT-client.jar
+
 COPY files/activate.py /scripts/
 
 RUN \
