@@ -1,4 +1,5 @@
 ## docker-cm-agent
+## Updated by Mamadou to reflect updates on Centos 7 java8 07/24/18
 
 This is an attempt to run Cloudera Manager Agent in docker on marathon. The idea is that we can run some number of cm-agents ( each with a configured AGENT_UUID ), and delegate most of its management to Cloudera Manager.
 
