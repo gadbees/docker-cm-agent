@@ -14,6 +14,6 @@ RUN \
   curl -s -L -o /usr/share/java/mysql-connector-java.jar \
     "http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11.jar"
 
-COPY files/start.sh /
+COPY files/start.sh /scripts
 
 CMD ["/start.sh"]
