@@ -1,6 +1,6 @@
-FROM pulsepointinc/centos6-java8:latest
+FROM pulsepointinc/docker-centos7.5-java8
 
-COPY files/etc/yum.repos.d/cloudera-manager.repo /etc/yum.repos.d/
+COPY files/etc/yum.repos.d/cloudera-manager.repo /etc/yum.repos.d/cloudera-manager.repo
 
 RUN \
   rpm --rebuilddb && \
@@ -12,11 +12,12 @@ RUN \
 RUN \
   mkdir -p -v /usr/share/java && \
   curl -s -L -o /usr/share/java/mysql-connector-java.jar \
-    "http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"
+    "http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11.jar"
 
 COPY files/activate.py /scripts/
 
 RUN \
+  mkdir -p -v /scripts  && \
   mkdir -p -v /opt/cloudera/parcel-cache && \
   curl -s -L -o /opt/cloudera/parcel-cache/CDH-5.13.0-1.cdh5.13.0.p0.29-el6.parcel \
     "http://archive.cloudera.com/cdh5/parcels/5.13.0/CDH-5.13.0-1.cdh5.13.0.p0.29-el6.parcel" && \  
